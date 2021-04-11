@@ -1,0 +1,25 @@
+.app {
+  margin: 0.5em;
+}
+
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imageContainer:after {
+  content: '';
+  flex-grow: 999999999;
+}
+
+.imageWrapper {
+  margin: 3px;
+  position: relative;
+}
+
+img.resultImage {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  vertical-align: bottom;
+}
