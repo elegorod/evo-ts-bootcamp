@@ -1,0 +1,17 @@
+.app {
+  text-align: center;
+  margin: auto;
+}
+
+.buttonPanel {
+  margin-top: 0.5em;
+}
+
+.buttonPanel button {
+  margin: 0.5em;
+  width: 8em;
+}
+
+.status {
+  font-family: monospace;
+}
