@@ -1,0 +1,22 @@
+.graph {
+  width: 600px;
+  height: 400px;
+  margin: auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.bar {
+  flex-basis: 19px;
+  background: hsl(61, 76%, 68%);
+  border: 1px solid black;
+}
+
+.bar.active {
+  background: hsl(9, 76%, 68%);
+}
+
+.bar.sorted {
+  background: hsl(103, 76%, 68%);
+}
