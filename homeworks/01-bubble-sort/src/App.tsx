@@ -31,7 +31,7 @@ StatusDisplayName.set(Status.Finished, "Finished");
 
 class App extends React.Component<Props, State> {
 
-  sorter = new Sorter(this.tickCallback.bind(this))
+  sorter: Sorter
 
   constructor(props: Props) {
     super(props)
@@ -41,10 +41,11 @@ class App extends React.Component<Props, State> {
       status: Status.NotStarted,
       active: []
     }
+    this.sorter = new Sorter(this.tickCallback)
     this.sorter.reset(newValues)
   }
 
-  generateValues() {
+  private generateValues() {
     const result = []
     for (let i = 0; i < VALUE_COUNT; i++) {
       result.push(MIN_VALUE + Math.random() * (MAX_VALUE - MIN_VALUE))
@@ -52,7 +53,7 @@ class App extends React.Component<Props, State> {
     return result;
   }
 
-  handleReset() {
+  handleReset = () => {
     const newValues = this.generateValues()
     this.setState({
       values: newValues,
@@ -63,14 +64,14 @@ class App extends React.Component<Props, State> {
     this.sorter.reset(newValues)
   }
 
-  handleStart() {
+  handleStart = () => {
     this.setState({
       status: Status.InProgress
     })
     this.sorter.start()
   }
 
-  handlePause() {
+  handlePause = () => {
     const newStatus = this.state.status === Status.InProgress ? Status.Paused : Status.InProgress
     this.setState({
       status: newStatus
@@ -78,7 +79,7 @@ class App extends React.Component<Props, State> {
     this.sorter.setPaused(newStatus === Status.Paused)
   }
 
-  tickCallback(values: number[], finished: boolean, active: number[], firstSorted: number) {
+  tickCallback = (values: number[], finished: boolean, active: number[], firstSorted: number) => {
     this.setState({
       values: values,
       status: finished ? Status.Finished : this.state.status,
@@ -96,11 +97,11 @@ class App extends React.Component<Props, State> {
         </header>
         <Graph values={this.state.values} active={this.state.active} firstSorted={this.state.firstSorted} />
         <div className={styles.buttonPanel}>
-          <button onClick={this.handleReset.bind(this)}>Reset</button>
+          <button onClick={this.handleReset}>Reset</button>
           {status === Status.NotStarted ?
-            <button onClick={this.handleStart.bind(this)}>Start</button>
+            <button onClick={this.handleStart}>Start</button>
             :
-            <button onClick={this.handlePause.bind(this)}
+            <button onClick={this.handlePause}
               disabled={status === Status.Finished}>
               {status === Status.Paused ? "Resume" : "Pause"}
             </button>
