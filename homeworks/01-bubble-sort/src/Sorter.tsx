@@ -32,11 +32,11 @@ class Sorter {
 
   start() {
     this.running = true
-    setTimeout(this.tick.bind(this), 0)
-    this.timer = window.setInterval(this.tick.bind(this), DELAY)
+    setTimeout(this.tick, 0)
+    this.timer = window.setInterval(this.tick, DELAY)
   }
 
-  tick() {
+  tick = () => {
     if (this.firstTick) {
       this.firstTick = false
     } else {
