@@ -2,18 +2,18 @@ import {sort, Comparator} from './MergeSort'
 
 describe("Merge sort", () => {
 
-  const cn: Comparator<number> = (a, b) => a - b
+  const comparator: Comparator<number> = (a, b) => a - b
 
   it("returns empty array for empty input", () => {
-    expect(sort([], cn)).toEqual([])
+    expect(sort([], comparator)).toEqual([])
   })
 
   it("sorts array with 1 element", () => {
-    expect(sort([1], cn)).toEqual([1])
+    expect(sort([1], comparator)).toEqual([1])
   })
 
   it("sorts array with 2 elements", () => {
-    expect(sort([2, 1], cn)).toEqual([1, 2])
+    expect(sort([2, 1], comparator)).toEqual([1, 2])
   })
 
   it.each([
@@ -24,7 +24,7 @@ describe("Merge sort", () => {
     [[3, 1, 2], [1, 2, 3]],
     [[3, 2, 1], [1, 2, 3]]
   ])("sorts array with 3 elements %o", (array, expected) => {
-    expect(sort(array, cn)).toEqual(expected)
+    expect(sort(array, comparator)).toEqual(expected)
   })
 
   it.each([
@@ -32,7 +32,7 @@ describe("Merge sort", () => {
     [[5, 5, 1, 5], [1, 5, 5, 5]],
     [[5, 10, 5, 5], [5, 5, 5, 10]],
   ])("sorts array with repeated elements %o", (array, expected) => {
-    expect(sort(array, cn)).toEqual(expected)
+    expect(sort(array, comparator)).toEqual(expected)
   })
 
   it.each([
@@ -44,26 +44,26 @@ describe("Merge sort", () => {
       [2, 3, 13, 15, 17, 19, 28, 30, 32, 35, 36, 37, 40, 43, 48, 49, 53, 54, 55, 56, 57, 59, 64, 72, 75, 76, 79, 80, 90, 97]
     ]
   ])("sorts array %o", (array, expected) => {
-    expect(sort(array, cn)).toEqual(expected)
+    expect(sort(array, comparator)).toEqual(expected)
   })
 
   it("doesn't mutate original array", () => {
     const array = [7, 4, 1, 2]
     const copy = array.slice()
-    sort(array, cn)
+    sort(array, comparator)
     expect(array).toEqual(copy)
   })
 
   it("sorts strings", () => {
     const array = ["banana", "pear", "cherry", "apple"]
-    const cs: Comparator<string> = (a, b) => a.localeCompare(b, 'en')
-    expect(sort(array, cs)).toEqual(["apple", "banana", "cherry", "pear"])
+    const stringComparator: Comparator<string> = (a, b) => a.localeCompare(b, 'en')
+    expect(sort(array, stringComparator)).toEqual(["apple", "banana", "cherry", "pear"])
   })
 
   it("sorts string descending", () => {
     const array = ["banana", "pear", "cherry", "apple"]
-    const csDesc: Comparator<string> = (a, b) => b.localeCompare(a, 'en')
-    expect(sort(array, csDesc)).toEqual(["pear", "cherry", "banana", "apple"])
+    const descComparator: Comparator<string> = (a, b) => b.localeCompare(a, 'en')
+    expect(sort(array, descComparator)).toEqual(["pear", "cherry", "banana", "apple"])
   })
 
   it("sorts custom objects", () => {
@@ -77,8 +77,8 @@ describe("Merge sort", () => {
       {name: "Mars", index: 4},
       {name: "Venus", index: 2}
     ]
-    const c: Comparator<Planet> = (a, b) => a.index - b.index
-    expect(sort(array, c)).toEqual([
+    const planetComparator: Comparator<Planet> = (a, b) => a.index - b.index
+    expect(sort(array, planetComparator)).toEqual([
       {name: "Mercury", index: 1},
       {name: "Venus", index: 2},
       {name: "Earth", index: 3},
