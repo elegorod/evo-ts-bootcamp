@@ -44,13 +44,13 @@ export default class SimpleBinaryTree<T> implements BinaryTree<T> {
           const queue: Array<TreeNode<T>> = []
           queue.push(node)
           while (queue.length > 0) {
-            const n = queue.shift() as TreeNode<T>
-            result.push(n.value)
-            if (n.left) {
-              queue.push(n.left)
+            const first = queue.shift() as TreeNode<T>
+            result.push(first.value)
+            if (first.left) {
+              queue.push(first.left)
             }
-            if (n.right) {
-              queue.push(n.right)
+            if (first.right) {
+              queue.push(first.right)
             }
           }
           break
