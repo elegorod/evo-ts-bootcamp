@@ -1,23 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { State } from "../types";
+import { Loading } from "./Loading";
 import { PizzaItem } from "./PizzaItem";
-import * as R from "ramda";
 
-interface PizzaListProps {
-    pizza: {
-        _id: string;
-        name: string;
-        price: number;
-    }[];
-    onAdd: (_id: string) => void;
-}
+const selectPizza = (state: State) => state.pizza
 
-export function PizzaList({ pizza, onAdd }: PizzaListProps) {
-    return R.map((p) =>
+export function PizzaList() {
+  const pizza = useSelector(selectPizza)
+
+  if (pizza.length > 0) {
+    return (
+    <>
+      {pizza.map(item =>
         <PizzaItem
-            key={p._id}
-            _id={p._id}
-            name={p.name}
-            price={p.price}
-            onAdd={onAdd}
-        />, pizza);
+          key={item._id}
+          _id={item._id}
+          name={item.name}
+          price={item.price}
+        />)}
+    </>);
+  } else {
+    return <Loading/>
+  }
 }

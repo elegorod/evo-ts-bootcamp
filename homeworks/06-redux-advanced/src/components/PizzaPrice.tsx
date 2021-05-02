@@ -6,6 +6,6 @@ interface PizzaPriceProps {
 
 export function PizzaPrice({ price }: PizzaPriceProps) {
     return (
-        <p><span className="text-yellow-400 mr-1">$</span>{price}</p>
+        <p><span className="text-yellow-400 mr-1">$</span>{price.toFixed(2)}</p>
     );
 }

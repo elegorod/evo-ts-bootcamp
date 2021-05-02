@@ -1,5 +1,6 @@
+import { Pizza } from "../types";
 
-export async function getPizza() {
+export async function getPizza(): Promise<{items: Pizza[]}> {
     return {
         items: [
             {

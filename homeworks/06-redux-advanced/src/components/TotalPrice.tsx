@@ -1,14 +1,15 @@
 import React from "react";
-import {PizzaPrice} from "./PizzaPrice";
+import { useSelector } from "react-redux";
+import { State } from "../types";
+import { PizzaPrice } from "./PizzaPrice";
 
-interface TotalPriceProps {
-    price: number;
-}
+const selectTotalPrice = (state: State) => state.basket.reduce((acc, item) => acc + item.price * item.count, 0)
 
-export function TotalPrice({ price }: TotalPriceProps) {
-    return (
-        <div className="flex">
-            <span>Total price:</span><PizzaPrice price={price} />
-        </div>
-    );
+export function TotalPrice() {
+  const price = useSelector(selectTotalPrice)
+  return (
+    <div className="flex">
+      <span>Total price:</span><PizzaPrice price={price} />
+    </div>
+  );
 }
