@@ -1,8 +1,8 @@
-import BinaryTree, { TreeNode, TraverseType, BinarySearchTree } from './BinaryTree'
-import SimpleBinarySearchTree from './SimpleBinarySearchTree'
-import { N, sort } from './TestHelper'
+import { TraverseType } from './BinaryTreeBase'
+import BinarySearchTree from './BinarySearchTree'
+import { node, sort } from './TestHelper'
 
-describe("Simple binary search tree", () => {
+describe("Binary search tree", () => {
 
   /** Test tree:
    *      0
@@ -13,16 +13,16 @@ describe("Simple binary search tree", () => {
    *       \
    *        5
    */
-  const root = N(0,
-    N(1, N(2)),
-    N(3,
-      N(4, undefined, N(5)),
-      N(6))
+  const root = node(0,
+    node(1, node(2)),
+    node(3,
+      node(4, undefined, node(5)),
+      node(6))
   )
-  const tree = new SimpleBinarySearchTree(root)
+  const tree = new BinarySearchTree(root)
 
   const SingleRootValue = 20
-  const singleTree = new SimpleBinarySearchTree(N(SingleRootValue))
+  const singleTree = new BinarySearchTree(node(SingleRootValue))
 
   describe("has()", () => {
     it.each([0, 1, 2, 3, 4, 5, 6]
@@ -52,8 +52,8 @@ describe("Simple binary search tree", () => {
   })
 
   test("setRoot() replaces root and returns this", () => {
-    const testTree = new SimpleBinarySearchTree(root)
-    const newRoot = N(25)
+    const testTree = new BinarySearchTree(root)
+    const newRoot = node(25)
 
     const result = testTree.setRoot(newRoot)
 

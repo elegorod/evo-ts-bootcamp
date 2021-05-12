@@ -1,8 +1,8 @@
-import BinaryTree, { TreeNode, TraverseType } from './BinaryTree'
-import SimpleBinaryTree from './SimpleBinaryTree'
-import {N, sort} from './TestHelper'
+import { TraverseType } from './BinaryTreeBase'
+import BinaryTree from './BinaryTree'
+import {node, sort} from './TestHelper'
 
-describe("Simple binary tree", () => {
+describe("Binary tree", () => {
   /** Test tree:
    *          0
    *        _/ \_
@@ -15,34 +15,31 @@ describe("Simple binary tree", () => {
    *       \
    *        5
    */
-  const root = N(0,
-      N(1,
-        N(2,
-          N(3),
-          N(4, undefined, N(5))),
-        N(6)),
-      N(7,
-        N(8),
-        N(9, N(10)))
+  const root = node(0,
+      node(1,
+        node(2,
+          node(3),
+          node(4, undefined, node(5))),
+        node(6)),
+      node(7,
+        node(8),
+        node(9, node(10)))
     )
-  const tree = new SimpleBinaryTree(root)
+  const tree = new BinaryTree(root)
 
   const SingleRootValue = 20
-  const singleTree = new SimpleBinaryTree(N(SingleRootValue))
+  const singleTree = new BinaryTree(node(SingleRootValue))
 
   test("getRoot() returns root", () => {
     expect(tree.getRoot()).toBe(root)
   })
 
   test("setRoot() replaces root and returns this", () => {
-    given:
-    const testTree = new SimpleBinaryTree(root)
-    const newRoot = N(25)
+    const testTree = new BinaryTree(root)
+    const newRoot = node(25)
 
-    when:
     const result = testTree.setRoot(newRoot)
 
-    then:
     expect(testTree.getRoot()).toBe(newRoot)
     expect(result).toBe(testTree)
   })

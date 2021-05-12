@@ -1,7 +1,7 @@
-import {TreeNode} from './BinaryTree'
+import {TreeNode} from './BinaryTreeBase'
 
 /** Create tree node */
-export function N(value: number, left?: TreeNode<number>, right?: TreeNode<number>) {
+export function node(value: number, left?: TreeNode<number>, right?: TreeNode<number>) {
   return new TreeNode(value, left, right)
 }
 
