@@ -1,0 +1,21 @@
+.tabContainer {
+  margin-top: 1em;
+}
+
+.tabContainer button {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.activeTab {
+  background-color: white;
+  color: black;
+  border: 2px black solid;
+  border-bottom: 0;
+}
+
+.selectableTab {
+  background-color: #cccccc;
+  color: #333333;
+  border: 2px black solid;
+}

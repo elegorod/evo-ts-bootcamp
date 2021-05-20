@@ -1,0 +1,22 @@
+.marsFigure {
+  display: flex;
+  flex-flow: column;
+  width: 280px;
+  flex-grow: 1;
+  margin: 0;
+  position: relative;
+}
+
+.marsFigure figcaption {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+}
+
+.heart {
+  width: 2em;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  cursor: pointer;
+}
