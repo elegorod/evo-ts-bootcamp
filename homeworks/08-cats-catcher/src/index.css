@@ -1,0 +1,34 @@
+#app {
+  position: relative;
+  background-color: white;
+  display: flex;
+}
+
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  height: 700px;
+}
+
+#cat {
+  position: absolute;
+}
+
+#info {
+  padding: 1em;
+}
+
+.gameInfoRow {
+  font-size: 150%;
+}
+
+#gameOver {
+  font-size: 300%;
+  color: #990000;
+  display: none;
+}
+
+#play {
+  font-size: 200%;
+}
