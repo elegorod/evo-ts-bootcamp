@@ -1,0 +1,18 @@
+{
+  "name": "09-node-chokidar",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^15.6.0",
+    "@types/prettyjson": "^0.0.29",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "csvjson": "^5.1.0",
+    "prettyjson": "^1.2.1"
+  },
+  "scripts": {
+    "start": "ts-node src/app.ts"
+  }
+}
