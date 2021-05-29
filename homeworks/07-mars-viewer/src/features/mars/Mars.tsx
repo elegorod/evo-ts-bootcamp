@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import styles from './Mars.module.css';
 import { MarsFavourites } from './MarsFavourites';
 import { MarsPhotos } from './MarsPhotos';
+import { MarsTab } from './MarsTab';
 
 enum Tab {
   Photos = "Photos",
@@ -22,22 +23,14 @@ export function Mars() {
 
   return (
     <div>
+      <div className={styles.tabContainer}>
+        <MarsTab selected={tab === Tab.Photos} onClick={photosClicked}>Photos</MarsTab>
+        <MarsTab selected={tab === Tab.Favourites} onClick={favouritesClicked}>Favourites</MarsTab>
+      </div>
       {tab === Tab.Photos ?
-        <>
-          <div className={styles.tabContainer}>
-            <button className={styles.activeTab} disabled>Photos</button>
-            <button className={styles.selectableTab} onClick={favouritesClicked} type="button">Favourites</button>
-          </div>
-          <MarsPhotos />
-        </>
+        <MarsPhotos />
         :
-        <>
-          <div className={styles.tabContainer}>
-            <button className={styles.selectableTab} onClick={photosClicked} type="button">Photos</button>
-            <button className={styles.activeTab} disabled>Favourites</button>
-          </div>
-          <MarsFavourites />
-        </>
+        <MarsFavourites />
       }
     </div>
   )
