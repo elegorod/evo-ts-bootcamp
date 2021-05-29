@@ -1,4 +1,4 @@
-import { interval, fromEvent, EMPTY } from 'rxjs'
+import { interval, fromEvent } from 'rxjs'
 import { filter, map, mapTo, pairwise, scan, startWith, switchMap, takeWhile, tap, withLatestFrom } from 'rxjs/operators'
 import { catElement, hideCat, playButton, renderBoard, renderCat, setGameOverVisible, setPlaySectionVisible, showRemainingCats, showScore } from './renderer'
 import './index.css'
@@ -8,7 +8,6 @@ const CatsAllowedToRunAway = 5
 
 const board = new Board()
 renderBoard(board)
-renderCat(board.windows[0])
 
 const cat = interval(1200).pipe(
   startWith(0),
@@ -38,6 +37,7 @@ const game = cat.pipe(
     if (remaining === 0) {
       setGameOverVisible(true)
       setPlaySectionVisible(true)
+      hideCat()
     }
   }),
   takeWhile(remaining => remaining > 0),
@@ -45,16 +45,12 @@ const game = cat.pipe(
 
 const playClicks = fromEvent(playButton, "click").pipe(
   mapTo(true),
-  startWith(false),
-  tap(playing => {
-    console.log("playing", playing)
-    if (playing) {
-      setGameOverVisible(false)
-      setPlaySectionVisible(false)
-      showRemainingCats(CatsAllowedToRunAway)
-    }
+  tap(() => {
+    setGameOverVisible(false)
+    setPlaySectionVisible(false)
+    showRemainingCats(CatsAllowedToRunAway)
   }),
-  switchMap(playing => playing ? game : EMPTY)
+  switchMap(() => game)
 )
 
 playClicks.subscribe()
