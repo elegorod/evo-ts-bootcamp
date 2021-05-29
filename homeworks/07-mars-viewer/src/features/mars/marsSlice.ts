@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
 import { loadData } from "./marsApi"
 
@@ -68,11 +68,19 @@ export const { setSol, addToFavourites, removeFromFavourites } = marsSlice.actio
 
 export const selectSol = (state: RootState) => state.mars.sol
 
-export const selectCurrentSolData = (state: RootState) => state.mars.solData.find(_ => _.sol === state.mars.sol)
+const selectSolData = (state: RootState) => state.mars.solData
 
-export const selectInFavourites = (id: number) => (state: RootState) => state.mars.favourites.includes(id)
+export const selectCurrentSolData = (state: RootState) => selectSolData(state).find(_ => _.sol === state.mars.sol)
 
-export const selectFavouriteImages = (state: RootState) => state.mars.solData.flatMap(solData => 
-  solData.images.filter(_ => state.mars.favourites.includes(_.id)))
+const selectFavourites = (state: RootState) => state.mars.favourites
+
+export const selectInFavourites = (id: number) => (state: RootState) => selectFavourites(state).includes(id)
+
+export const selectFavouriteImages = createSelector(
+  selectSolData,
+  selectFavourites,
+  (solData, favourites) => solData.flatMap(solData => 
+    solData.images.filter(_ => favourites.includes(_.id)))
+)
 
 export default marsSlice.reducer

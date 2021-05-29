@@ -1,5 +1,5 @@
 
-const apiKey = "EJxNr6OrEqS7HfnoIlhnJRZS4DtHFQoLDyLafH62"
+const apiKey = process.env.REACT_APP_NASA_API_KEY
 
 interface MarsApiResponse {
   photos: MarsApiPhoto[]
