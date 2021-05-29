@@ -1,0 +1,121 @@
+h1 {
+  text-align: center;
+}
+
+.findingGameContainer {
+  text-align: center;
+}
+
+.hex {
+  animation: hex 8s linear 0s infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  transform: scale(0);
+}
+
+#hex2 {
+  animation-delay: 0.35s;
+}
+
+#hex3 {
+  animation-delay: 0.7s;
+}
+
+#hex4 {
+  animation-delay: 1.05s;
+}
+
+#hex5 {
+  animation-delay: 1.4s;
+}
+
+#hex6 {
+  animation-delay: 1.75s;
+}
+
+#hex7 {
+  animation-delay: 2.1s;
+}
+
+@keyframes hex {
+  0% {
+    transform: scale(0);
+  }
+
+  15% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  65% {
+    transform: scale(0);
+  }
+}
+
+#outerArc {
+  animation: outerArc 8s cubic-bezier(1,0,0,1) infinite;
+  transform-origin: center;
+}
+
+@keyframes outerArc {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+#innerArc1 {
+  animation: innerArc1 8s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes innerArc1 {
+  0% {
+    transform: rotate(0deg);
+    stroke-dasharray: 50 1000;
+  }
+
+  50% {
+    stroke-dasharray: 80 1000;
+  }
+
+  80% {
+    stroke-dasharray: 40 1000;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    stroke-dasharray: 50 100;
+  }
+}
+
+#innerArc2 {
+  animation: innerArc2 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes innerArc2 {
+  0% {
+    transform: rotate(0deg);
+    stroke-dasharray: 0 0 5 1000;
+  }
+
+  50% {
+    stroke-dasharray: 0 0 700 1000;
+  }
+
+  80% {
+    stroke-dasharray: 0 350 280 1000;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    stroke-dasharray: 0 750 0 1000;
+  }
+}
