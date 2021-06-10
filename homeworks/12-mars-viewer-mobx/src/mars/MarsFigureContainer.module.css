@@ -1,0 +1,12 @@
+.marsFigureContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  margin: 3px;
+}
+
+.marsFigureContainer:after {
+  content: '';
+  flex-grow: 999999999;
+}
