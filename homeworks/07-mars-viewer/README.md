@@ -1,4 +1,4 @@
-Homework to make Mars viewer.
+Homework to make Mars viewer with Redux.
 
 # Demo
 http://mars-viewer-elegorod.surge.sh/
