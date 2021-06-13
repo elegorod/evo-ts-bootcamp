@@ -76,18 +76,18 @@ function validateArgs(): boolean {
 }
 
 async function run(shift: number, inputPath: string | undefined, outputPath: string | undefined): Promise<void> {
-  const is = inputPath ? fs.createReadStream(inputPath, {encoding: "utf8"}) : process.stdin
-  const os = outputPath ? fs.createWriteStream(outputPath, {encoding: "utf8"}) : process.stdout
+  const inputStream = inputPath ? fs.createReadStream(inputPath, {encoding: "utf8"}) : process.stdin
+  const outputStream = outputPath ? fs.createWriteStream(outputPath, {encoding: "utf8"}) : process.stdout
 
   await stream.pipeline(
-    is,
+    inputStream,
     async function* (source) {
       source.setEncoding('utf8')
       for await (const chunk of source) {
         yield [...chunk].map(c => encodeChar(c, shift)).join("")
       }
     },
-    os
+    outputStream
   )
 }
 
