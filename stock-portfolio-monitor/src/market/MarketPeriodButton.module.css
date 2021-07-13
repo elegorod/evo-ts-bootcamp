@@ -1,0 +1,16 @@
+
+.button {
+  background-color: transparent;
+  border: 0;
+  padding-bottom: 0.3em;
+}
+
+.active {
+  border-bottom: 1px solid black;
+  color: black;
+}
+
+.selectable {
+  color: #666666;
+  cursor: pointer;
+}

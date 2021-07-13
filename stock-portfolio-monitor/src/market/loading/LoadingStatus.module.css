@@ -1,0 +1,9 @@
+.loading {
+  width: 8em;
+  height: 8em;
+}
+
+.loadingError {
+  color: #990000;
+  background-color: #ffd7d7;
+}

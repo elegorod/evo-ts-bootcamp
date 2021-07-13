@@ -1,0 +1,25 @@
+.portfolioTable {
+  border: 1px solid black;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.portfolioTable td, .portfolioTable th {
+  border: 1px dotted black;
+  padding: 0.3em 0.5em;
+}
+
+.portfolioTable th {
+  border-bottom: 1px solid black;
+  background: #eeeeee;
+}
+
+.headerRow {
+  font-weight: bold;
+  text-align: center;
+}
+
+.addButton {
+  margin: 0.5em;
+  padding: 0.3em 0.4em 0.4em 0.4em;
+}

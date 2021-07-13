@@ -1,0 +1,13 @@
+.periodContainer {
+  margin-top: 1em;
+}
+
+.periodContainer button {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.graphContainer {
+  width: 1020px;
+  margin: auto;
+}

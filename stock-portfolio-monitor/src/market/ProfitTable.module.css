@@ -1,0 +1,31 @@
+
+.profitTable {
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.totalRow {
+  font-size: 1.2em;
+}
+
+.nameCell {
+  text-align: left;
+}
+
+.moneyValueCell {
+  text-align: right;
+  padding-left: 2rem;
+}
+
+.currencyCell {
+  text-align: left;
+}
+
+.percentValueCell {
+  text-align: right;
+  padding-left: 2rem;
+}
+
+.percentSignCell {
+  text-align: left;
+}

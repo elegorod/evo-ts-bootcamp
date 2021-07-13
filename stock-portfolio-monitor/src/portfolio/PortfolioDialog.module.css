@@ -1,0 +1,71 @@
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  overflow: auto;
+  max-height: 90vh;
+  padding: 0.5em 1.5em 1.5em 1.5em;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.fields {
+  display: grid;
+  grid-template: auto / repeat(2, auto);
+  gap: 0.5em 1em;
+}
+
+.buttons {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.8em;
+}
+
+.buttons button {
+  padding: 0.5em;
+}
+
+.buttons svg {
+  margin-right: 0.3em;
+  font-size: 120%;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.justifyStart {
+  justify-self: start;
+}
+
+.count {
+  text-align: right;
+  justify-self: start;
+  width: 7em;
+}
+
+.date {
+  justify-self: start;
+}
+
+.price {
+  text-align: right;
+  justify-self: start;
+  width: 8em;
+}
