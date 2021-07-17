@@ -1,8 +1,8 @@
 import { ReactNode, useCallback, useContext } from "react";
+import { observer } from "mobx-react-lite";
 import classNames from "classnames/bind"
 import styles from "./MarketPeriodButton.module.css"
 import { ViewPeriod } from "./MarketState";
-import { observer } from "mobx-react-lite";
 import { MarketContext } from "../App";
 
 interface MarketPeriodButtonProps {

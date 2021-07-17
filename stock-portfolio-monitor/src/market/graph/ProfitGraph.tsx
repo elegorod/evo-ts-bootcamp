@@ -15,60 +15,60 @@ export const ProfitGraph = observer(() => {
 
   const series = [{
     name: "Total profit",
-    data: data
+    data
   }]
-
-  const options: ApexOptions = {
-    chart: {
-      type: 'line',
-      height: 250,
-      id: "profitGraph",
-      fontFamily: "inherit",
-      toolbar: {
-        show: false
-      }
-    },
-    title: {
-      text: 'Total profit',
-      align: 'left'
-    },
-    xaxis: {
-      type: 'category',
-      tickPlacement: "between"
-    },
-    yaxis: {
-      tooltip: {
-        enabled: true
-      },
-      labels: {
-        minWidth: 40,
-        style: {
-          fontSize: "0.9em"
-        }
-      }
-    },
-    stroke: {
-      curve: "smooth"
-    },
-    annotations: {
-      yaxis: [
-        {
-          y: 0,
-          borderColor: '#48cea1',
-          label: {
-            borderColor: '#b2ead7',
-            style: {
-              color: '#000',
-              background: '#b2ead7'
-            },
-            text: '0'
-          }
-        }
-      ]
-    }
-  }
 
   return (
     <Chart options={options} series={series} width="1000" height="250" />
   )
 })
+
+const options: ApexOptions = {
+  chart: {
+    type: 'line',
+    height: 250,
+    id: "profitGraph",
+    fontFamily: "inherit",
+    toolbar: {
+      show: false
+    }
+  },
+  title: {
+    text: 'Total profit',
+    align: 'left'
+  },
+  xaxis: {
+    type: 'category',
+    tickPlacement: "between"
+  },
+  yaxis: {
+    tooltip: {
+      enabled: true
+    },
+    labels: {
+      minWidth: 40,
+      style: {
+        fontSize: "0.9em"
+      }
+    }
+  },
+  stroke: {
+    curve: "smooth"
+  },
+  annotations: {
+    yaxis: [
+      {
+        y: 0,
+        borderColor: '#48cea1',
+        label: {
+          borderColor: '#b2ead7',
+          style: {
+            color: '#000',
+            background: '#b2ead7'
+          },
+          text: '0'
+        }
+      }
+    ]
+  }
+}

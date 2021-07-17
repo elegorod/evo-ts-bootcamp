@@ -1,4 +1,4 @@
-import { debounce } from 'lodash-es'
+import { debounce } from 'lodash'
 import { useCallback, useState, useMemo } from 'react'
 import search, { StockSymbol } from '../client/SymbolSearchClient'
 import { Ticker } from './PortfolioState'
@@ -9,7 +9,7 @@ interface TickerFieldProps {
   onChange: (ticker: Ticker) => void
 }
 
-export function TickerField(props: TickerFieldProps) {
+export function TickerField({ onChange, value }: TickerFieldProps) {
   const [symbols, setSymbols] = useState<StockSymbol[]>([])
 
   const searchDebounced = useMemo(() =>
@@ -19,21 +19,21 @@ export function TickerField(props: TickerFieldProps) {
       }
     }, 700), [setSymbols])
 
-  const onChangeProp = props.onChange
   const onInputChange = useCallback(event => {
     const ticker = event.target.value
-    onChangeProp(ticker)
+    onChange(ticker)
     searchDebounced(ticker)
-  }, [onChangeProp, searchDebounced])
+  }, [onChange, searchDebounced])
 
   const onTickerSelect = useCallback(ticker => {
-    onChangeProp(ticker)
+    onChange(ticker)
     setSymbols([])
-  }, [onChangeProp])
+  }, [onChange])
 
   return (
     <div>
-      <input type="text" name="ticker" required value={props.value} onChange={onInputChange} />
+      <input type="text" id="ticker" required value={value} onChange={onInputChange} />
+      <div><i>E. g., MSFT or Microsoft, then select from suggestions)</i></div>
       <TickerTable symbols={symbols} onSelect={onTickerSelect} />
     </div>
   )

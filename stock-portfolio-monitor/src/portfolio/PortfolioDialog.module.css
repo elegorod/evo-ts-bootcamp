@@ -69,3 +69,8 @@
   justify-self: start;
   width: 8em;
 }
+
+.fields input:invalid {
+  border-color: #ffaaaa;
+  color: #cc0000;
+}

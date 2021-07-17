@@ -1,10 +1,9 @@
 import { Ticker } from "../portfolio/PortfolioState"
-
-const apiKey = process.env.REACT_APP_STOCK_API_KEY
+import { getApiKey } from "./CurrentPriceClient"
 
 export default async function search(query: string): Promise<StockSymbol[]> {
   const response = await fetch(
-    `https://finnhub.io/api/v1/search?q=${query}&token=${apiKey}`)
+    `https://finnhub.io/api/v1/search?q=${query}&token=${getApiKey()}`)
   const json = await response.json() as SearchResultJson
   let result: StockSymbol[] = []
   if (json.result) {

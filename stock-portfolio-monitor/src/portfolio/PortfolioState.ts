@@ -1,9 +1,10 @@
 import { LocalDate } from "@js-joda/core"
 import { makeAutoObservable } from "mobx"
-import { sumBy, uniq } from "lodash-es"
+import { sumBy, uniq } from "lodash"
 import { v4 as uuid } from "uuid"
 
 export default class PortfolioState {
+
   items: PortfolioItem[] = [
     { id: uuid(), ticker: "IVV", count: 14, price: 375.2, date: LocalDate.of(2021, 2, 1) },
     { id: uuid(), ticker: "VNQ", count: 50, price: 104.5, date: LocalDate.of(2021, 6, 15) },
@@ -28,7 +29,7 @@ export default class PortfolioState {
   }
 
   edit(id: PortfolioItemId) {
-    const item = this.items.find(_ => _.id === id)
+    const item = this.items.find(currentItem => currentItem.id === id)
     this.editedItem = item ? {
       id: item.id,
       ticker: item.ticker,
@@ -44,7 +45,7 @@ export default class PortfolioState {
       this.updateItem({
         id: item.id,
         ticker: item.ticker,
-        count: parseInt(item.count),
+        count: parseInt(item.count, 10),
         date: LocalDate.parse(item.date),
         price: parseFloat(item.price)
       })
@@ -53,7 +54,7 @@ export default class PortfolioState {
   }
 
   private updateItem(item: PortfolioItem) {
-    const existingItem = this.items.find(_ => _.id === item.id)
+    const existingItem = this.items.find(currentItem => currentItem.id === item.id)
     if (existingItem === undefined) {
       this.items.push(item)
     } else {
@@ -63,11 +64,11 @@ export default class PortfolioState {
       existingItem.price = item.price
     }
   }
-  
+
   delete() {
     const item = this.editedItem
     if (item) {
-      this.items = this.items.filter(_ => _.id !== item.id)
+      this.items = this.items.filter(currentItem => currentItem.id !== item.id)
     }
     this.stopEdit()
   }
@@ -86,7 +87,7 @@ export default class PortfolioState {
 
   get createMode() {
     const item = this.editedItem
-    return item && this.items.findIndex(_ => _.id === item.id) === -1
+    return item && this.items.findIndex(currentItem => currentItem.id === item.id) === -1
   }
 
 }
