@@ -7,9 +7,9 @@ interface TickerTableProps {
   onSelect: (ticker: Ticker) => void
 }
 
-export function TickerTable(props: TickerTableProps) {
+export function TickerTable({ symbols, onSelect }: TickerTableProps) {
   return (
-    props.symbols.length > 0 ?
+    symbols.length > 0 ?
       <table>
         <thead>
           <tr>
@@ -19,8 +19,8 @@ export function TickerTable(props: TickerTableProps) {
           </tr>
         </thead>
         <tbody>
-          {props.symbols.map(symbol =>
-            <TickerTableRow key={symbol.ticker} symbol={symbol} onSelect={props.onSelect} />
+          {symbols.map(symbol =>
+            <TickerTableRow key={symbol.ticker} symbol={symbol} onSelect={onSelect} />
           )}
         </tbody>
       </table>

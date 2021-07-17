@@ -7,10 +7,7 @@ interface TickerTableRowProps {
   onSelect: (ticker: Ticker) => void
 }
 
-export function TickerTableRow(props: TickerTableRowProps) {
-  const symbol = props.symbol
-  const onSelect = props.onSelect
-
+export function TickerTableRow({ symbol, onSelect }: TickerTableRowProps) {
   const onClick = useCallback(
     () => onSelect(symbol.ticker),
     [symbol.ticker, onSelect])

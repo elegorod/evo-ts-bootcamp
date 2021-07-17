@@ -1,4 +1,4 @@
-import { sumBy } from "lodash-es";
+import { sumBy } from "lodash";
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 import { MarketContext } from "../App";
@@ -6,11 +6,10 @@ import styles from "./ProfitTable.module.css"
 
 export const ProfitTable = observer(() => {
   const state = useContext(MarketContext)
-  const selectedStockProfits = state.selectedStockProfits
-  let totalValue = 0
+  const { selectedStockProfits } = state
+  const totalValue = sumBy(selectedStockProfits, profit => profit.value)
+  const previousInvestedValue = sumBy(selectedStockProfits, profit => profit.previousInvestedValue)
   let totalPercent = 0
-  totalValue = sumBy(selectedStockProfits, _ => _.value)
-  const previousInvestedValue = sumBy(selectedStockProfits, _ => _.previousInvestedValue)
   if (previousInvestedValue > 0) {
     totalPercent = totalValue / previousInvestedValue * 100
   }

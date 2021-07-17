@@ -1,9 +1,9 @@
 import { observer } from "mobx-react-lite";
-import { PortfolioItem } from "./PortfolioState";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import styles from "./PortfolioRow.module.css"
 import { useCallback, useContext } from "react";
+import { PortfolioItem } from "./PortfolioState";
+import styles from "./PortfolioRow.module.css"
 import { MarketContext, PortfolioContext } from "../App";
 
 interface PortfolioRowProps {
@@ -11,20 +11,20 @@ interface PortfolioRowProps {
 }
 
 export const PortfolioRow = observer((props: PortfolioRowProps) => {
-  const item = props.item
+  const { id, count, date, ticker, price } = props.item
   const state = useContext(PortfolioContext)
   const marketState = useContext(MarketContext)
-  const currentPrice = marketState.currentPrices.find(_ => _.ticker === item.ticker)?.price
+  const currentPrice = marketState.currentPrices.find(cp => cp.ticker === ticker)?.price
   const onEdit = useCallback(() =>
-    state.edit(item.id),
-    [state, item.id])
+    state.edit(id),
+    [state, id])
 
   return (
     <tr>
-      <td>{item.ticker}</td>
-      <td className={styles.alignRight}>{item.count}</td>
-      <td className={styles.alignRight}>{item.date.toString()}</td>
-      <td className={styles.alignRight}>{item.price.toFixed(2)}</td>
+      <td>{ticker}</td>
+      <td className={styles.alignRight}>{count}</td>
+      <td className={styles.alignRight}>{date.toString()}</td>
+      <td className={styles.alignRight}>{price.toFixed(2)}</td>
       <td className={styles.alignRight}>{currentPrice?.toFixed(2)}</td>
       <td>
         <button type="button" className={styles.actionButton} onClick={onEdit}>

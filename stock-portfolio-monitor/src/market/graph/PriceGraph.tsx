@@ -13,7 +13,7 @@ const monthFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
 export const PriceGraph = observer(() => {
   const state = useContext(MarketContext)
   const candleGroup = state.selectedCandleGroup
-  let data: any[] = []
+  let data: CandleDataPoint[] = []
   if (candleGroup) {
     data = candleGroup.candles.map(candle => ({
       x: formatDateTime(candle.instant, state.period),
@@ -22,38 +22,8 @@ export const PriceGraph = observer(() => {
   }
 
   const series = [{
-    data: data
+    data
   }]
-
-  const options: ApexOptions = {
-    chart: {
-      type: 'candlestick',
-      height: 500,
-      id: "priceGraph",
-      fontFamily: "inherit",
-      toolbar: {
-        show: false
-      }
-    },
-    title: {
-      text: 'Selected ticker price',
-      align: 'left'
-    },
-    xaxis: {
-      type: 'category'
-    },
-    yaxis: {
-      tooltip: {
-        enabled: true
-      },
-      labels: {
-        minWidth: 40,
-        style: {
-          fontSize: "0.9em"
-        }
-      }
-    }
-  }
 
   return (
     <Chart options={options} series={series} type="candlestick" width="1000" height="500" />
@@ -74,4 +44,39 @@ export function formatDateTime(instant: Instant, period: ViewPeriod) {
       break
   }
   return result
+}
+
+const options: ApexOptions = {
+  chart: {
+    type: 'candlestick',
+    height: 500,
+    id: "priceGraph",
+    fontFamily: "inherit",
+    toolbar: {
+      show: false
+    }
+  },
+  title: {
+    text: 'Selected ticker price',
+    align: 'left'
+  },
+  xaxis: {
+    type: 'category'
+  },
+  yaxis: {
+    tooltip: {
+      enabled: true
+    },
+    labels: {
+      minWidth: 40,
+      style: {
+        fontSize: "0.9em"
+      }
+    }
+  }
+}
+
+interface CandleDataPoint {
+  x: string
+  y: [number, number, number, number]
 }

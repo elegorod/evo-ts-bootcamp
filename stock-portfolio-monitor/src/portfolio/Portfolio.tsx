@@ -1,10 +1,10 @@
 import { useCallback, useContext } from "react"
 import { observer } from "mobx-react-lite";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { PortfolioContext } from "../App";
 import styles from "./Portfolio.module.css"
 import { PortfolioRow } from "./PortfolioRow";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { PortfolioDialog } from "./PortfolioDialog";
 
 export const Portfolio = observer(() => {
@@ -34,10 +34,12 @@ export const Portfolio = observer(() => {
       </table>
       <div>
         <button type="button" className={styles.addButton} onClick={onAdd}>
-          <FontAwesomeIcon icon={faPlusCircle} /> Add item
+          <FontAwesomeIcon icon={faPlusCircle} />
+          {" "}
+          Add item
         </button>
       </div>
-      <PortfolioDialog/>
+      <PortfolioDialog />
     </div>
   )
 })

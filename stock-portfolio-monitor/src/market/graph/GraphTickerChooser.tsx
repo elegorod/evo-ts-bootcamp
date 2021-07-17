@@ -9,9 +9,8 @@ export const GraphTickerChooser = observer(() => {
   return (
     <div>
       {portfolioState.uniqueTickers.map(ticker =>
-        <GraphTickerButton ticker={ticker} key={ticker}/>
+        <GraphTickerButton ticker={ticker} key={ticker} />
       )}
     </div>
   )
 })
-

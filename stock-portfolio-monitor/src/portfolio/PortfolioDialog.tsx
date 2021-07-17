@@ -25,7 +25,7 @@ export const PortfolioDialog = observer(() => {
     event.preventDefault()
   }, [state, marketState])
 
-  const onDelete = useCallback(event => {
+  const onDelete = useCallback(() => {
     state.delete()
     marketState.refresh()
   }, [state, marketState])
@@ -59,27 +59,31 @@ export const PortfolioDialog = observer(() => {
   }, [item])
 
   return (
-    <Modal isOpen={item !== undefined} onRequestClose={onClose} className={styles.modal} overlayClassName={styles.overlay}>
+    <Modal isOpen={item !== undefined} onRequestClose={onClose} className={styles.modal}
+      overlayClassName={styles.overlay}>
       {item &&
         <div>
-          <h3>{state.createMode ? "Add" : "Edit"} portfolio item</h3>
+          <h3>
+            {state.createMode ? "Add " : "Edit "}
+            portfolio item
+          </h3>
           <form onSubmit={onSave}>
             <div className={styles.fields}>
               <label htmlFor="ticker">Ticker</label>
               <TickerField value={item.ticker} onChange={onTickerChange} />
               <label htmlFor="count">Count</label>
-              <input type="number" name="count" className={styles.count} 
+              <input type="number" id="count" className={styles.count}
                 required min="1" step="1" value={item.count} onChange={onCountChange} />
               <label htmlFor="buyDate">Buy date</label>
-              <input type="date" name="buyDate" className={styles.date} required value={item.date} 
+              <input type="date" id="buyDate" className={styles.date} required value={item.date}
                 onChange={onDateChange} />
               <label htmlFor="buyPrice">Buy price</label>
-              <input type="number" name="buyPrice" className={styles.price} 
+              <input type="number" id="buyPrice" className={styles.price}
                 required min="0.01" step="0.01" value={item.price} onChange={onPriceChange} />
             </div>
 
             <div className={styles.buttons}>
-              <button onClick={onSave}>
+              <button type="submit" onClick={onSave}>
                 <FontAwesomeIcon icon={faSave} />
                 Save
               </button>

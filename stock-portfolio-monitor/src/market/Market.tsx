@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite"
+import { useContext, useEffect } from "react"
 import { PriceGraph } from "./graph/PriceGraph"
 import { GraphTickerChooser } from "./graph/GraphTickerChooser"
 import styles from "./Market.module.css"
@@ -6,7 +7,6 @@ import { MarketPeriodButton } from "./MarketPeriodButton"
 import { ViewPeriod } from "./MarketState"
 import { ProfitTable } from "./ProfitTable"
 import { ProfitGraph } from "./graph/ProfitGraph"
-import { useContext, useEffect } from "react"
 import { MarketContext } from "../App"
 import { LoadingStatus } from "./loading/LoadingStatus"
 
@@ -15,7 +15,7 @@ export const Market = observer(() => {
   useEffect(() => {
     state.load()
   }, [state])
-  
+
   return (
     <div>
       <div className={styles.periodContainer}>
@@ -24,7 +24,7 @@ export const Market = observer(() => {
         <MarketPeriodButton period={ViewPeriod.Year}>1 year</MarketPeriodButton>
       </div>
       <h3>Profit</h3>
-      <LoadingStatus/>
+      <LoadingStatus />
       <ProfitTable />
       <GraphTickerChooser />
       <div className={styles.graphContainer}>

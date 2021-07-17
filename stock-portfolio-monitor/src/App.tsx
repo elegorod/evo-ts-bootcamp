@@ -1,10 +1,10 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
+import Modal from "react-modal"
 import './App.css';
 import { Market } from './market/Market';
 import MarketState from './market/MarketState';
 import { Portfolio } from './portfolio/Portfolio';
 import PortfolioState from './portfolio/PortfolioState';
-import Modal from "react-modal"
 
 const portfolioState = new PortfolioState()
 export const PortfolioContext = createContext(portfolioState)
